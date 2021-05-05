@@ -134,4 +134,19 @@ var findNumberIn2DArray = function (matrix, target) {
 
 ## Tip
 
+### 在 Vue 中，页面的初始数据请求应该放在哪个 lifehook（created or mounted） 里面？
+
+这个问题考察了我们对于 Vue lifehook 的了解程度。
+
+在 Vue 2.x 中，Vue 一共给我们提供了 8 生命周期钩子：
+
+1. beforeCreate
+2. created
+3. beforeMount
+4. mounted
+5. beforeUpdate
+6. updated
+7. beforeDestroy
+8. destroyed
+
 ## Share
