@@ -109,44 +109,47 @@
  * @param {number} target
  * @return {boolean}
  */
-var findNumberIn2DArray = function (matrix, target) {
-  // 以数组左下角为原点 若当前数小于目标数则右移 若大于目标则上移一位
-  const n = matrix.length;
-  if (!n) {
+var findNumberIn2DArray = function(matrix, target) {
+  if (!matrix || matrix.length === 0) {
     return false;
   }
-  const m = matrix[0].length;
-  let x = n - 1;
-  let y = 0;
-  while (x >= 0 && y < m) {
-    if (matrix[x][y] === target) {
-      return true;
+
+  let row = matrix.length,
+      col = matrix[0].length,
+      x = col - 1,
+      y = 0;
+  
+  while (x >= 0 && y < row) {
+    if (matrix[y][x] === target) {
+        return true;
     }
-    matrix[x][y] > target ? x-- : y++;
+    matrix[y][x] > target ? x-- : y++;
   }
   return false;
 };
 ```
 
+当以 matrix 的左下角或者右上角开始查找时，这个问题就变成了 Binary Search Tree。
+
+复杂度分析：
+
+* 时间复杂度：O(m+n)；
+* 空间复杂度：O(1)。
+
 ## Review
 
 [Starting with an idea and building a community](https://github.com/readme/evan-you)
 
+In this article, Evan You(creator of Vue) shared the following points:
+
+* the birth of Vue
+* why he decided to be a full-time open-source maintainer
+* suggestions for open source enthusiast
+
 ## Tip
 
-### 在 Vue 中，页面的初始数据请求应该放在哪个 lifehook（created or mounted） 里面？
-
-这个问题考察了我们对于 Vue lifehook 的了解程度。
-
-在 Vue 2.x 中，Vue 一共给我们提供了 8 生命周期钩子：
-
-1. beforeCreate
-2. created
-3. beforeMount
-4. mounted
-5. beforeUpdate
-6. updated
-7. beforeDestroy
-8. destroyed
+[Vue 页面初始化数据请求应该放在 created or mounted](https://cq036pgwqz.feishu.cn/docs/doccnSXl1UzyTl4EuvkuVPnHG6b)
 
 ## Share
+
+[OKR的优势：为什么要用OKR来取代KPI做团队规划？](https://time.geekbang.org/column/article/334826)
