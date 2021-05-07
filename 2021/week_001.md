@@ -146,6 +146,13 @@ In this article, Evan You(creator of Vue) shared the following points:
 * why he decided to be a full-time open-source maintainer
 * suggestions for open source enthusiast
 
+New Words:
+
+1. sheer: total, complete, absolute, sheer workload;
+2. pull it off: success, achieve;
+3. wow factor: a sense of achievement from others wow~;
+4. overlap: Evan's preferences overlapped with the community's;
+
 ## Tip
 
 [Vue 页面初始化数据请求应该放在 created or mounted](https://cq036pgwqz.feishu.cn/docs/doccnSXl1UzyTl4EuvkuVPnHG6b)
