@@ -88,9 +88,104 @@ a[k]_address = base_address + (k - 1) * type_size
 
 ## Review
 
+### [Which type of loop is fastest in JavaScript?](Which type of loop is fastest in JavaScript?)
+
+Actually I have this question for a long time, but never experiment it myself. So this time I followed the author and tried it myself.
+
+I tested four main loops in JavaScript:
+
+* for (forward and reverse)
+* forEach
+* for...of
+* for...in
+
+Different with the author, I got two result with sutle difference:
+
+```js
+const million = 1000000;
+const arr = Array(million);
+
+console.time('time-ff');
+for (let i = 0; i < arr.length; i++) { }
+console.timeEnd('time-ff');
+
+console.time('time-fr');
+for (let i = arr.length; i > 0; i--) { }
+console.timeEnd('time-fr');
+
+console.time('time-fe');
+arr.forEach(item => { });
+console.timeEnd('time-fe');
+
+console.time('time-in');
+for (const k in arr) { }
+console.timeEnd('time-in');
+
+console.time('time-of');
+for (const v of arr) { }
+console.timeEnd('time-of');
+
+/*
+time-ff: 2.455078125 ms
+time-fr: 2.273681640625 ms
+time-fe: 1.896240234375 ms
+time-in: 3.619140625 ms
+time-of: 18.98095703125 ms
+*/
+```
+
+```js
+const million = 1000000;
+const arr = [...Array(million)];
+
+console.time('time-ff');
+for (let i = 0; i < arr.length; i++) { }
+console.timeEnd('time-ff');
+
+console.time('time-fr');
+for (let i = arr.length; i > 0; i--) { }
+console.timeEnd('time-fr');
+
+console.time('time-fe');
+arr.forEach(item => { });
+console.timeEnd('time-fe');
+
+console.time('time-in');
+for (const i in arr) { }
+console.timeEnd('time-in');
+
+console.time('time-of');
+for (const i of arr) { }
+console.timeEnd('time-of');
+
+/*
+time-ff: 2.810791015625 ms
+time-fr: 2.72412109375 ms
+time-fe: 9.942138671875 ms
+time-in: 148.51806640625 ms
+time-of: 19.784912109375 ms
+*/
+```
+
+I only tested in Chrome on Mac, maybe results will have subtle differences in different browsers and different systems.
+
+Although I haven't got the conclusion, pretty much agree with the author's recommendation in the last paragraph, that when you are developing a complex structure at that time code readability is essential but you should also stay focused on performance.
+
+#### New Words
+
+* leverage：杠杆，take leverage of sth. =  take advantage of sth.
+* short-circuiting：短路
+
 ## Tip
 
 [JavaScript 执行机制 in 浏览器](https://cq036pgwqz.feishu.cn/docs/doccn32aWiEGYWbpu5jPxqTt3le?from=from_copylink)
+
+为了更好地理解以下几点：
+
+* 变量提升
+* 调用栈
+* 块级作用域
+* 作用域链与闭包
 
 ## Share
 
@@ -112,7 +207,7 @@ A data structure is a way of describing a certain way to organize peices of data
 
 A data type describes a peices of data that all share a common property. For example an integer data type describes every integer the computer can handle.
 
-所以说，数据结构中所指的数组和 JS 语言中所定义的数据类型数组其实是两个东西。
+所以说，数据结构中所指的数组和编程语言中所定义的数据类型数组其实是两个东西。
 
 ### JS 中，数组为什么可以保存不同类型？
 
@@ -131,57 +226,21 @@ class JSArray: public JSObject {
 };
 ```
 
-如上我们可以看出 JSArray 是继承自 JSObject 的，所以在 JavaScript 中，数组可以是一个特殊的对象，内部也是以 key-value 形式存储数据，所以 JavaScript 中的数组可以存放不同类型的值。
-
-### JS 数组的增删改查
-
-#### 增加
+如上我们可以看出 JSArray 是继承自 JSObject 的，所以在 JavaScript 中，数组可以是一个特殊的对象，内部也是以 key-value 形式存储数据，所以 JavaScript 中的数组可以存放不同类型的值。所以当我们用 for...in 循环数组时，可以得到 item 的 index：
 
 ```js
-let arr = ['a']
-
-// 通过 push 方法向尾部添加
-arr.push('b')
-
-// 通过 length 属性向尾部添加
-arr[arr.length] = 'c'
-
-// 通过 unshift 方法向头部添加
-arr.unshift('0')
-
-// 通过 contact 拼接数组
-arr.concat(['d', 'e'])
-
-// 通过 splice 向任意位置添加数据
-arr.splice(1, 0, 'f', 'g')
+const arr = [4, 5, 6]
+for (const k in arr) {
+  console.log(k)
+}
+/*
+0
+1
+2
+*/
 ```
 
-#### 删除和修改
 
-```js
-// 通过 shift 方法从头部删除
-arr.shift()
 
-// 通过 pop 方法从尾部删除
-arr.pop()
 
-// 通过 splice 方法删除指定 index 的 item
-arr.splice(index, deleteCount)
 
-// 通过 slice shallow copy 返回新数组
-arr.slice(0, 1)
-
-// 通过 filter 获取符合条件新数组
-arr.filter(item => item.id > 33)
-```
-
-#### 查找及其他
-
-```js
-let arr = [1, 2, 3]
-
-arr.toString() // '1, 2, 3'
-arr.join('-') // '1-2-3'
-arr.sort()
-...
-```
