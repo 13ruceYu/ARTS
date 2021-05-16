@@ -88,7 +88,7 @@ a[k]_address = base_address + (k - 1) * type_size
 
 ## Review
 
-### [Which type of loop is fastest in JavaScript?](Which type of loop is fastest in JavaScript?)
+[Which type of loop is fastest in JavaScript?](https://javascript.plainenglish.io/which-type-of-loop-is-fastest-in-javascript-ec834a0f21b9)
 
 Actually I have this question for a long time, but never experiment it myself. So this time I followed the author and tried it myself.
 
@@ -171,7 +171,7 @@ I only tested in Chrome on Mac, maybe results will have subtle differences in di
 
 Although I haven't got the conclusion, pretty much agree with the author's recommendation in the last paragraph, that when you are developing a complex structure at that time code readability is essential but you should also stay focused on performance.
 
-#### New Words
+### New Words
 
 * leverage：杠杆，take leverage of sth. =  take advantage of sth.
 * short-circuiting：短路
@@ -239,8 +239,3 @@ for (const k in arr) {
 2
 */
 ```
-
-
-
-
-
