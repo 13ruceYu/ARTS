@@ -90,6 +90,8 @@ a[k]_address = base_address + (k - 1) * type_size
 
 ## Tip
 
+[JavaScript 执行机制 in 浏览器](https://cq036pgwqz.feishu.cn/docs/doccn32aWiEGYWbpu5jPxqTt3le?from=from_copylink)
+
 ## Share
 
 [你真的了解js数组吗？](https://segmentfault.com/a/1190000037627661)
@@ -105,3 +107,81 @@ let arr = [1, 'string', {name: 'whh'}, function hello() {}]
 此时我就陷入了疑惑，怎么 JS 的数组表现还和数组的定义冲突了呢？
 
 其实这里我陷入一个误区，就是对数据结构和数据类型理解有误，所以就有必要先弄清楚这两个概念。
+
+A data structure is a way of describing a certain way to organize peices of data so that operations and algorithms can be more easily applied.
+
+A data type describes a peices of data that all share a common property. For example an integer data type describes every integer the computer can handle.
+
+所以说，数据结构中所指的数组和 JS 语言中所定义的数据类型数组其实是两个东西。
+
+### JS 中，数组为什么可以保存不同类型？
+
+```c++
+// The JSArray describes JavaScript Arrays 
+//  Such an array can be in one of two modes: 
+//    - fast, backing storage is a FixedArray and length <= elements.length(); 
+//       Please note: push and pop can be used to grow and shrink the array. 
+//    - slow, backing storage is a HashTable with numbers as keys. 
+class JSArray: public JSObject {  
+    public: // [length]: The length property. 
+        DECL_ACCESSORS(length, Object)  
+    // ...此处省略实现  
+    // Number of element slots to pre-allocate for an empty array. 
+    static const int kPreallocatedArrayElements = 4; 
+};
+```
+
+如上我们可以看出 JSArray 是继承自 JSObject 的，所以在 JavaScript 中，数组可以是一个特殊的对象，内部也是以 key-value 形式存储数据，所以 JavaScript 中的数组可以存放不同类型的值。
+
+### JS 数组的增删改查
+
+#### 增加
+
+```js
+let arr = ['a']
+
+// 通过 push 方法向尾部添加
+arr.push('b')
+
+// 通过 length 属性向尾部添加
+arr[arr.length] = 'c'
+
+// 通过 unshift 方法向头部添加
+arr.unshift('0')
+
+// 通过 contact 拼接数组
+arr.concat(['d', 'e'])
+
+// 通过 splice 向任意位置添加数据
+arr.splice(1, 0, 'f', 'g')
+```
+
+#### 删除和修改
+
+```js
+// 通过 shift 方法从头部删除
+arr.shift()
+
+// 通过 pop 方法从尾部删除
+arr.pop()
+
+// 通过 splice 方法删除指定 index 的 item
+arr.splice(index, deleteCount)
+
+// 通过 slice shallow copy 返回新数组
+arr.slice(0, 1)
+
+// 通过 filter 获取符合条件新数组
+arr.filter(item => item.id > 33)
+```
+
+#### 查找及其他
+
+```js
+let arr = [1, 2, 3]
+
+arr.toString() // '1, 2, 3'
+arr.join('-') // '1-2-3'
+arr.sort()
+...
+```
