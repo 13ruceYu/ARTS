@@ -2,9 +2,75 @@
 
 ## Algorithm
 
+### 算法题
+
+[整数反转](https://leetcode-cn.com/problems/reverse-integer/)
+
+```js
+/*
+题目：给你一个 32 位的有符号整数 x，返回将 x 中的数字部分反转后的结果。如果反转后整数超过 32 位有符号整数的范围 [-2^31, 2^31 - 1]，就返回 0。假设环境不允许存储 64 位整数。
+
+示例 1:
+输入：x = 123
+输出：321
+
+示例 2:
+输入：x = -123
+输出：-321
+
+示例 3:
+输入：x = 120
+输出：21
+
+示例 4:
+输入：x = 0
+输出 0
+*/
+
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var reverse = function (x) {
+  // 对于反转操作，第一反应就是 JS 中数组的 reverse 方法
+  let res = null
+  const xStr = x + ''
+  const xArr = xStr.split('')
+  const fItem = xArr[0]
+
+  if (fItem === '-') {
+    delete xArr[0]
+    res = Number('-' + xArr.reverse().join(''))
+  } else if (fItem === '0') {
+    delete xArr[0]
+    res = Number(xArr.reverse().join(''))
+  } else {
+    res = Number(xArr.reverse().join(''))
+  }
+
+  if (res < -(2 ** 31) || res > (2 ** 31 - 1)) {
+    res = 0
+  }
+
+  return res
+};
+
+// 上面这种解法有点笨笨的，但新的解法这周来不及了，下周补上
+```
+
 ## Review
 
+[Glossary of Modern JavaScript Concepts: Part 1](https://auth0.com/blog/glossary-of-modern-javascript-concepts/)
+
+《现代 JS 概念术语表》，这是耗子叔在程序员练级攻略中前端部分里分享的一篇文章。
+
+文章写得很好，主要介绍了 JS 语境下的一些编程术语，比如纯函数和非纯函数，有状态函数和无状态函数，可变性和不可变性，命令式编程和声明式编程，高阶函数等。
+
+[中文翻译](https://cq036pgwqz.feishu.cn/docs/doccn45aypPcnwTkbMqypogU2Wf)
+
 ## Technique/Tips
+
+[JS 面向对象编程](https://cq036pgwqz.feishu.cn/docs/doccn88OpTi8Fbyn8MZPKtclNeb)
 
 ## Share
 
