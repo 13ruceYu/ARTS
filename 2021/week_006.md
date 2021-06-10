@@ -40,6 +40,8 @@ var isPalindrome = function(x) {
 
 ## Technique/Tip
 
+[JS 实现数组分组的几种方法](https://cq036pgwqz.feishu.cn/docs/doccnEHyXgyghxMKSQHefKSitXb)
+
 ## Share
 
 [高效学习(4/5)：如何学习和阅读代码](https://time.geekbang.org/column/article/14380?code=KHKYcoBU6vZa8nMglg7AWfDxxi3BWrz9INAzAY3umPk%3D)
