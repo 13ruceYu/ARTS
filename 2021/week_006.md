@@ -32,7 +32,10 @@
  * @return {boolean}
  */
 var isPalindrome = function(x) {
-
+  let res = false
+  const reversedX = Number((x + '').split('').reverse().join(''));
+  reversedX === x ? res = true : res = false
+  return res
 };
 ```
 
