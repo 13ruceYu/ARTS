@@ -37,9 +37,26 @@ var isPalindrome = function(x) {
   reversedX === x ? res = true : res = false
   return res
 };
+
+// 方法二：不转化字符串实现-反转一般数字
+var isPalindrome = function(x) {
+  if (x < 0 || (x % 10 === 10 && x !== 0)) {
+    return false
+  }
+
+  let revertedNumber = 0
+  while (x > revertedNumber) {
+    revertedNumber = revertedNumber * 10 + x % 10
+    x = Math.floor(x / 10)
+  }
+
+  return x === revertedNumber || x === Math.floor(revertedNumber / 10)
+}
 ```
 
 ## Review
+
+[Glossary of Modern JavaScript Concepts: Part 1](https://cq036pgwqz.feishu.cn/docs/doccnq7Ao9t5yJCFqsnqWzbwZBg)
 
 ## Technique/Tip
 
