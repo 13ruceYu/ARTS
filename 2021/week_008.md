@@ -37,6 +37,14 @@ var findMedianSortedArrays = function(nums1, nums2) {
 
 ## Review
 
+[How JavaScript works: an overview of the engine, the runtime, and the call stack](https://cq036pgwqz.feishu.cn/docs/doccnAiFZXCzexJ6TI0OUFxl4Eh)
+
 ## Tips
 
+[JS 异步发展历程](https://cq036pgwqz.feishu.cn/docs/doccnIvvAsvrXmdoqXrXxnpnSDh)
+
 ## Share
+
+[为什么这么设计系列文章](https://draveness.me/whys-the-design/)
+
+最近又发现一个大佬，他的系列文章“为什么这么设计（Why’s THE Design）”写得非常好，每一篇文章中都会提出一个具体的问题并从不同的角度讨论这种设计的优缺点、对具体实现造成的影响。
