@@ -1,6 +1,6 @@
 # week_008
 
-## Algorithum
+## Algorithm
 
 ### 算法题
 
